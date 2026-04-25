@@ -1,0 +1,25 @@
+window {
+  border-radius: 10px;
+  border: 2px solid rgb(25, 25, 25);
+  background-color: rgba(17, 17, 17, 0.99);
+}
+
+label {
+  font-family: 'CaskaydiaMono Nerd Font';
+  font-size: 15.5px;
+
+  color: #CCCCCC;
+}
+
+image {
+  color: #CCCCCC;
+  font-size: 15.5px;
+}
+
+progressbar {
+  border-radius: 10px;
+}
+
+progress {
+  background-color: #CCCCCC;
+}

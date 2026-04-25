@@ -1,0 +1,48 @@
+force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
+selection_wrap = true                                                       # wrap list if at bottom or top
+theme = "matte-black"                                                   # theme to use
+additional_theme_location = "~/.config/walker/themes/"
+hide_action_hints = true                                                    # globally hide the action hints
+
+[ui]
+width = 400
+height = 400
+
+[placeholders]
+"default" = { input = " Search...", list = "No Results" }
+# Provider-specific placeholders
+"desktopapplications" = { input = " Launch App...", list = "No Applications" }
+"files" = { input = " Browse Files...", list = "No Files Found" }
+"calc" = { input = " Calculate...", list = "Enter Expression" }
+"websearch" = { input = " Search Web", list = "" }
+
+[keybinds]
+quick_activate = []
+
+[columns]
+symbols = 1 # providers to be queried by default
+
+[providers]
+max_results = 256 # 256 should be enough for everyone
+empty = ["desktopapplications"]
+default = [
+  "desktopapplications",
+  "websearch",
+  "files",
+  "calc",
+] # providers to be queried by default
+
+[[providers.prefixes]]
+prefix = "="
+provider = "calc"
+
+[[providers.prefixes]]
+prefix = "@"
+provider = "websearch"
+
+[[providers.prefixes]]
+prefix = "/"
+provider = "files"
+
+[providers.actions]
+

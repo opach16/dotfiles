@@ -1,0 +1,120 @@
+* {
+  background-color: rgba(17, 17, 17, 1);
+  color: #cccccc;
+  border-radius: 10px;
+  min-height: 0px;
+  font-family: CaskaydiaMono Nerd Font;
+  font-size: 15.5px;
+}
+
+#waybar {
+  background-color: transparent;
+}
+
+#waybar > box {
+  border-radius: 10px;
+  background-color: rgba(17, 17, 17 , 1);
+  margin: 7px 7px 4px 7px;
+  box-shadow: 0 0 2px 2px rgba(17, 17, 17, 0.8);
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 4px;
+  margin: 0 1px;
+  min-width: 15.5px;
+}
+
+#workspaces button.empty {
+  opacity: 0.4;
+}
+
+#tray,
+#cpu,
+#disk,
+#memory,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-menu,
+#custom-screenrecording-indicator,
+#custom-update{
+  min-width: 15.5px;
+  margin: 0 1px;
+  padding: 0 8px;
+}
+
+#custom-menu{
+  margin-right: 8px;
+}
+
+#bluetooth {
+  margin-right: -6px;
+  margin-left: -2px;
+}
+#memory {
+  margin-left: 2px;
+}
+#disk {
+  margin-top: 2px;
+}
+#custom-expand-icon {
+  margin-right: 2px;
+}
+
+tooltip {
+  border: 2px solid rgba(25, 25, 25, 1);
+}
+
+tooltip label {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 15.5px;
+}
+
+#clock {
+  margin-left: 8.75px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 15.5px;
+  margin-left: 8.75px;
+  font-size: 15.5px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+}
+
+#custom-voxtype.recording {
+  color: #a55555;
+}
+
+#battery.warning {
+    color: #d68000;
+}
+
+#battery.critical {
+    color: #d60000;
+}
+
