@@ -1,12 +1,12 @@
-# All the default Omarchy aliases and functions
-# (don't mess with these directly, just overwrite them here!)
-source ~/.config/bash/rc
+# Import the default bash aliases and functions
+source ~/.config/bash/shell
+source ~/.config/bash/aliases
+source ~/.config/bash/prompt
+source ~/.config/bash/init
+source ~/.config/bash/envs
+[[ $- == *i* ]] && bind -f ~/.config/bash/inputrc
 
-# Add your own exports, aliases, and functions here.
-#
 # Make an alias for invoking commands you use constantly
-# alias p='python'
-#
 alias runSnapshot='sudo sh /usr/local/bin/btrbk-snapshot.sh'
 alias runBackup='sudo sh /usr/local/bin/btrbk-backup.sh'
 alias mountOnedrive='rclone mount onedrive: ~/OneDrive/ --vfs-cache-mode writes&'

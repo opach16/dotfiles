@@ -1,0 +1,12 @@
+width=500px
+height=500px
+show=drun
+insensitive=true
+show_icons=true
+term=ghostty
+gtk_dark=true
+sort_order=alphabetical
+key_expand=Tab
+key_exit=Escape
+prompt=Search
+

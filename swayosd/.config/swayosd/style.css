@@ -1,25 +1,56 @@
-window {
+window#osd {
   border-radius: 10px;
-  border: 2px solid rgb(25, 25, 25);
-  background-color: rgba(17, 17, 17, 0.99);
+  border: 2px solid rgba(102, 102, 102, 0.5);
+  background-color: #161616;
+  font-family: "CaskaydiaMono Nerd Font";
+  font-size: 12px;
 }
+  #container {
+    margin: 10px;
+  }
 
-label {
-  font-family: 'CaskaydiaMono Nerd Font';
-  font-size: 15.5px;
+  image {
+    padding: -5px;
+    margin: 0px;
+  }
 
-  color: #CCCCCC;
-}
+  image,
+  label {
+    color: #cccccc;
+  }
 
-image {
-  color: #CCCCCC;
-  font-size: 15.5px;
-}
+  progressbar:disabled,
+  image:disabled {
+    opacity: 0.5;
+  }
 
-progressbar {
-  border-radius: 10px;
-}
+  progressbar,
+  segmentedprogress {
+    min-height: 6px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+  }
+  trough,
+  segment {
+    min-height: inherit;
+    border-radius: inherit;
+    border: none;
+    background: rgba(102, 102, 102, 0.8);
+  }
+  progress,
+  segment.active {
+    min-height: inherit;
+    min-width: 6px;
+    border-radius: inherit;
+    border: none;
+    background: #cccccc;
+  }
 
-progress {
-  background-color: #CCCCCC;
-}
+  segment {
+    margin-left: 8px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+

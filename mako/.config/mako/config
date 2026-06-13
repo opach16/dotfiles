@@ -1,18 +1,16 @@
 font=CaskaydiaMono Nerd Font 10
-text-color=#dddddd
-background-color=#222222ff
-border-size=1
-border-color=#E58E0E
+text-color=#cccccc
+background-color=#161616ff
+border-size=2
+border-color=#66666680
 border-radius=10
 anchor=top-right
-default-timeout=7000
-width=340
+default-timeout=10000
+width=300
+height=150
 outer-margin=5
-padding=13,15
+padding=10,12
 max-icon-size=32
-
-[app-name=Spotify]
-invisible=1
 
 [mode=do-not-disturb]
 invisible=true
