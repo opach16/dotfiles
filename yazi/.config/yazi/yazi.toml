@@ -1,21 +1,21 @@
 [mgr]
-ratio = [1,2,3]
+ratio = [1, 2, 3]
 
 [opener]
 edit = [
-  { run = 'nvim %s', desc = "Edit with Neovim", block = true, for = "unix" }
+  { run = 'nvim %s', desc = "Edit with Neovim", block = true, for = "unix" },
 ]
 
 play = [
-  { run = 'mpv --force-window %s', desc = "Play with mpv", orphan = true, for = "unix" }
+  { run = 'mpv --force-window %s', desc = "Play with mpv", orphan = true, for = "unix" },
 ]
 
 pdf = [
-  { run = 'zathura %s', desc = "Open PDF with Zathura", block = true, for = "unix" }
+  { run = 'zathura %s', desc = "Open PDF with Zathura", block = true, for = "unix" },
 ]
 
 open = [
-  { run = 'xdg-open %s', desc = "Open with system default", for = "linux" }
+  { run = 'xdg-open %s', desc = "Open with system default", for = "linux" },
 ]
 
 [open]
@@ -24,7 +24,7 @@ rules = [
   { mime = "application/pdf", use = "pdf" },
   { mime = "audio/*", use = "play" },
   { mime = "video/*", use = "play" },
-  { url = "*", use = "open" }
+  { url = "*", use = "open" },
 ]
 
 [preview]

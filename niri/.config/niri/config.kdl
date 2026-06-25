@@ -1,0 +1,597 @@
+// =============================
+// Niri configuration
+// =============================
+
+
+// =============================
+// INPUT
+// =============================
+
+input {
+    keyboard {
+        xkb {
+            layout "pl"
+        }
+
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+
+// =============================
+// OUTPUTS
+// =============================
+
+// Laptop screen
+output "eDP-1" {
+    mode "1920x1080@120.030"
+    scale 1.25
+    transform "normal"
+
+    // Keeps external monitor placement compatible
+    position x=1280 y=0
+}
+
+
+// =============================
+// LAYOUT
+// =============================
+
+    prefer-no-csd
+
+layout {
+
+    // Similar to Hyprland gaps_out
+    gaps 8
+
+    // Niri native column behaviour
+    center-focused-column "always"
+
+
+    // Default window width
+    default-column-width {
+        proportion 0.6
+    }
+
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+
+    // Active window indicator
+    focus-ring {
+        width 0
+
+        active-color "#55555580"
+        inactive-color "#11111100"
+    }
+
+
+    // No permanent borders
+    border {
+        off
+
+        width 0
+
+        active-color "#55555580"
+
+        inactive-color "#11111100"
+    }
+
+
+    // Hyprland-like shadow
+    shadow {
+        on
+
+        softness 15
+        spread 3
+
+        offset x=0 y=0
+
+        color "#111111e0"
+    }
+}
+
+
+// =============================
+// STARTUP
+// =============================
+
+spawn-at-startup "waybar"
+
+spawn-at-startup "hyprsunset"
+
+spawn-at-startup "hypridle"
+
+spawn-at-startup "swayosd-server"
+
+spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
+
+
+// Clipboard history
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+
+
+// =============================
+// ANIMATIONS
+// =============================
+
+animations {
+    slowdown 0.8
+}
+
+
+// =============================
+// SCREENSHOTS
+// =============================
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+
+// =============================
+// WINDOW RULES
+// =============================
+
+
+// Ghostty initial size fix
+
+window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+
+    default-column-width {
+      proportion 0.6
+    }
+}
+
+
+// Firefox should not occupy whole screen
+
+window-rule {
+    match app-id=r#"firefox$"#
+
+    default-column-width {
+        proportion 1.0
+   }
+}
+
+
+// Firefox picture-in-picture
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+
+    open-floating true
+}
+
+
+// Rounded corners
+
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+window-rule {
+
+    match is-active=false
+
+    opacity 0.89
+}
+
+
+window-rule {
+
+    match is-active=true
+
+    opacity 0.99
+}
+
+window-rule {
+      background-effect {
+        blur true
+    }
+}
+// =============================
+// HOTKEY OVERLAY
+// =============================
+
+hotkey-overlay {
+    skip-at-startup
+}
+// =============================
+// KEY BINDINGS
+// =============================
+
+binds {
+
+    // -----------------------------
+    // Applications
+    // -----------------------------
+
+    Mod+Q {
+        close-window;
+    }
+
+
+    Mod+Return {
+        spawn "ghostty";
+    }
+
+
+    Mod+F {
+        spawn "thunar";
+    }
+
+
+    Mod+B {
+        spawn "firefox";
+    }
+
+
+    Mod+Shift+B {
+        spawn "firefox" "--private-window";
+    }
+
+
+    Mod+N {
+        spawn "ghostty" "-e" "nvim";
+    }
+
+
+    Mod+T {
+        spawn "ghostty" "-e" "btop";
+    }
+
+
+    Mod+D {
+        spawn "ghostty" "-e" "lazydocker";
+    }
+
+
+    Mod+Y {
+        spawn "ghostty" "-e" "yazi";
+    }
+
+
+    Mod+E {
+        spawn "thunderbird";
+    }
+
+
+    Mod+Space {
+        spawn "wofi";
+    }
+
+
+    Mod+Escape {
+        spawn "hyprlock";
+    }
+
+
+    // Clipboard manager
+
+    Mod+V {
+        spawn-sh "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
+    }
+
+
+
+    // -----------------------------
+    // Window navigation
+    // -----------------------------
+
+    Mod+Left {
+        focus-column-left;
+    }
+
+    Mod+Right {
+        focus-column-right;
+    }
+
+    Mod+Up {
+        focus-workspace-up;
+    }
+
+    Mod+Down {
+        focus-workspace-down;
+    }
+
+
+    // Vim style navigation
+
+    Mod+H {
+        focus-column-left;
+    }
+
+    Mod+L {
+        focus-column-right;
+    }
+
+    Mod+K {
+        focus-workspace-up;
+    }
+
+    Mod+J {
+        focus-workspace-down;
+    }
+
+
+
+    // -----------------------------
+    // Move windows
+    // -----------------------------
+
+    Mod+Shift+H {
+        move-column-left;
+    }
+
+    Mod+Shift+L {
+        move-column-right;
+    }
+
+    Mod+Shift+K {
+        move-column-to-workspace-up;
+    }
+
+    Mod+Shift+J {
+        move-column-to-workspace-down;
+    }
+
+
+
+    // -----------------------------
+    // Resize windows
+    // -----------------------------
+
+    Mod+Ctrl+H {
+        set-column-width "-5%";
+    }
+
+
+    Mod+Ctrl+L {
+        set-column-width "+5%";
+    }
+
+
+    Mod+Ctrl+K {
+        set-window-height "-5%";
+    }
+
+
+    Mod+Ctrl+J {
+        set-window-height "+5%";
+    }
+
+
+
+    // -----------------------------
+    // Floating
+    // -----------------------------
+
+    Mod+Shift+V {
+        toggle-window-floating;
+    }
+
+
+
+    // -----------------------------
+    // Workspaces
+    // -----------------------------
+
+    Mod+1 {
+        focus-workspace 1;
+    }
+
+    Mod+2 {
+        focus-workspace 2;
+    }
+
+    Mod+3 {
+        focus-workspace 3;
+    }
+
+    Mod+4 {
+        focus-workspace 4;
+    }
+
+    Mod+5 {
+        focus-workspace 5;
+    }
+
+
+    // Move windows to workspaces
+
+    Mod+Shift+1 {
+        move-column-to-workspace 1;
+    }
+
+    Mod+Shift+2 {
+        move-column-to-workspace 2;
+    }
+
+    Mod+Shift+3 {
+        move-column-to-workspace 3;
+    }
+
+    Mod+Shift+4 {
+        move-column-to-workspace 4;
+    }
+
+    Mod+Shift+5 {
+        move-column-to-workspace 5;
+    }
+
+
+    // Workspace switching
+
+    Mod+Tab {
+        focus-workspace-down;
+    }
+
+
+    Mod+WheelScrollDown cooldown-ms=150 {
+        focus-workspace-down;
+    }
+
+
+    Mod+WheelScrollUp cooldown-ms=150 {
+        focus-workspace-up;
+    }
+
+
+
+    // -----------------------------
+    // Column management
+    // -----------------------------
+
+    Mod+R {
+        switch-preset-column-width;
+    }
+
+
+    Mod+M {
+        maximize-column;
+    }
+
+
+    Mod+Shift+F {
+        maximize-window-to-edges;
+    }
+
+
+    Mod+W {
+        toggle-column-tabbed-display;
+    }
+
+
+
+    // -----------------------------
+    // Screenshots
+    // -----------------------------
+
+    Print {
+        screenshot;
+    }
+
+
+    Ctrl+Print {
+        screenshot-screen;
+    }
+
+
+    Alt+Print {
+        screenshot-window;
+    }
+
+
+
+    // -----------------------------
+    // Audio
+    // -----------------------------
+
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "swayosd-client --output-volume +5";
+    }
+
+
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "swayosd-client --output-volume -5";
+    }
+
+
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "swayosd-client --output-volume mute-toggle";
+    }
+
+
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "swayosd-client --input-volume mute-toggle";
+    }
+
+
+
+    // Small volume changes with Super
+
+    Mod+XF86AudioRaiseVolume {
+        spawn-sh "swayosd-client --output-volume +1";
+    }
+
+
+    Mod+XF86AudioLowerVolume {
+        spawn-sh "swayosd-client --output-volume -1";
+    }
+
+
+
+    // -----------------------------
+    // Brightness
+    // -----------------------------
+
+    XF86MonBrightnessUp {
+        spawn-sh "swayosd-client --brightness +5";
+    }
+
+
+    XF86MonBrightnessDown {
+        spawn-sh "swayosd-client --brightness -5";
+    }
+
+
+    Mod+XF86MonBrightnessUp {
+        spawn "brightnessctl" "set" "1%+";
+    }
+
+
+    Mod+XF86MonBrightnessDown {
+        spawn "brightnessctl" "set" "1%-";
+    }
+
+
+
+    // -----------------------------
+    // Media
+    // -----------------------------
+
+    XF86AudioNext {
+        spawn "playerctl" "next";
+    }
+
+
+    XF86AudioPrev {
+        spawn "playerctl" "previous";
+    }
+
+
+    XF86AudioPlay {
+        spawn "playerctl" "play-pause";
+    }
+
+
+    XF86AudioPause {
+        spawn "playerctl" "play-pause";
+    }
+
+
+
+    // -----------------------------
+    // Niri control
+    // -----------------------------
+
+    Mod+Shift+E {
+        quit;
+    }
+
+
+    Mod+Shift+P {
+        power-off-monitors;
+    }
+}

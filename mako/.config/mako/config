@@ -6,11 +6,11 @@ border-color=#66666680
 border-radius=10
 anchor=top-right
 default-timeout=10000
-width=300
-height=150
+width=400
+height=200
 outer-margin=5
-padding=10,12
-max-icon-size=32
+padding=12,16
+max-icon-size=48
 
 [mode=do-not-disturb]
 invisible=true
