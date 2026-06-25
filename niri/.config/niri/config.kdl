@@ -35,6 +35,10 @@ output "eDP-1" {
 
     // Keeps external monitor placement compatible
     position x=1280 y=0
+
+        hot-corners {
+        off
+    }
 }
 
 
@@ -228,7 +232,7 @@ binds {
 
 
     Mod+F {
-        spawn "thunar";
+        spawn "nautilus";
     }
 
 
@@ -463,8 +467,8 @@ binds {
     }
 
 
-    Mod+Shift+F {
-        maximize-window-to-edges;
+    Mod+Shift+M {
+        fullscreen-window;
     }
 
 
