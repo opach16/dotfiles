@@ -1,18 +1,15 @@
-// =============================
-// Niri configuration
-// =============================
+// ENVIRONMENT & SYSTEM ENVIRONMENT
+environment {
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "gnome"
+}
 
-
-// =============================
-// INPUT
-// =============================
-
+// INPUT DEVICES & HARDWARE CONFIGURATION
 input {
     keyboard {
         xkb {
             layout "pl"
         }
-
         numlock
     }
 
@@ -20,164 +17,75 @@ input {
         tap
         natural-scroll
     }
+
+    focus-follows-mouse
+    warp-mouse-to-focus mode="center-xy-always"
 }
 
-
-// =============================
-// OUTPUTS
-// =============================
-
-// Laptop screen
+// OUTPUTS & DISPLAY CONFIGURATION
 output "eDP-1" {
     mode "1920x1080@120.030"
     scale 1.25
     transform "normal"
-
-    // Keeps external monitor placement compatible
-    position x=1280 y=0
-
-        hot-corners {
-        off
-    }
+    position x=1280 y=0 // Keeps external monitor placement compatible
+    hot-corners { off; }
 }
 
-
-// =============================
-// LAYOUT
-// =============================
-
-    prefer-no-csd
+// GENERAL LAYOUT & STYLING
+prefer-no-csd
 
 layout {
-
-    // Similar to Hyprland gaps_out
     gaps 8
+    center-focused-column "never"
+    always-center-single-column
 
-    // Niri native column behaviour
-    center-focused-column "always"
-
-
-    // Default window width
-    default-column-width {
-        proportion 0.6
-    }
-
+    default-column-width { proportion 0.5; }
 
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 1.0
     }
 
-
-    // Active window indicator
     focus-ring {
-        width 0
-
-        active-color "#55555580"
-        inactive-color "#11111100"
+        off
+        width 2
+        active-color "#FAA00080"
     }
 
-
-    // No permanent borders
     border {
         off
-
-        width 0
-
+        width 2
         active-color "#55555580"
-
         inactive-color "#11111100"
     }
 
-
-    // Hyprland-like shadow
     shadow {
         on
-
-        softness 15
-        spread 3
-
+        softness 10
+        spread 5
         offset x=0 y=0
-
         color "#111111e0"
+        draw-behind-window false 
     }
 }
 
+animations { slowdown 0.8; }
 
-// =============================
-// STARTUP
-// =============================
-
-spawn-at-startup "waybar"
-
-spawn-at-startup "hyprsunset"
-
-spawn-at-startup "hypridle"
-
-spawn-at-startup "swayosd-server"
-
-spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent"
-
-
-// Clipboard history
-spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
-spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
-
-
-// =============================
-// ANIMATIONS
-// =============================
-
-animations {
-    slowdown 0.8
+blur {
+    passes 3       // more passes = stronger blur (default: 3)
+    offset 3.0     // sample distance per pass (default: 3.0)
+    noise 0.03     // grain overlay (default: 0.02)
+    saturation 1.5 // color saturation boost (default: 1.5)
 }
 
+// WINDOW RULES (SPECIFIC APPS & GENERAL CORNER STYLES)
 
-// =============================
-// SCREENSHOTS
-// =============================
-
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-
-// =============================
-// WINDOW RULES
-// =============================
-
-
-// Ghostty initial size fix
-
-window-rule {
-    match app-id=r#"^com\.mitchellh\.ghostty$"#
-
-    default-column-width {
-      proportion 0.6
-    }
-}
-
-
-// Firefox should not occupy whole screen
-
-window-rule {
-    match app-id=r#"firefox$"#
-
-    default-column-width {
-        proportion 1.0
-   }
-}
-
-
-// Firefox picture-in-picture
-
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-
-    open-floating true
-}
-
-
-// Rounded corners
+// Global window aesthetics
+workspace "1"
+workspace "2"
+workspace "3"
 
 window-rule {
     geometry-corner-radius 10
@@ -185,417 +93,216 @@ window-rule {
 }
 
 window-rule {
+    background-effect {
+        blur true
+        xray false
+    }
+}
 
+// Active and inactive window opacities
+window-rule {
     match is-active=false
-
     opacity 0.89
 }
 
-
 window-rule {
-
     match is-active=true
-
     opacity 0.99
 }
 
+// Workspace assignments and dimensions
 window-rule {
-      background-effect {
-        blur true
+  default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id=r#"ghostty$"#
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id=r#"zathura$"#
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id=r#"nvim$"#
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id=r#"rencal$"#
+    open-on-workspace "1"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id=r#"firefox$"#
+    open-on-workspace "2"
+    default-column-width { proportion 1.0; }
+}
+
+// Floating rules for utilities & overlays
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 920; }
+    default-window-height { fixed 904; }
+}
+
+// Screencast indicators (Visual feedback)
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
     }
 }
-// =============================
-// HOTKEY OVERLAY
-// =============================
 
-hotkey-overlay {
-    skip-at-startup
+// LAYER RULES
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+        // blur false
+    }
 }
-// =============================
-// KEY BINDINGS
-// =============================
 
+// STARTUP SERVICES & MISC UTILITIES
+spawn-at-startup "noctalia"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+
+hotkey-overlay { skip-at-startup; }
+screenshot-path "~/Pictures/Screenshots/screenshot%Y%m%d%H%M%S.png"
+
+// KEYBINDINGS
 binds {
+    // Session management & Essentials
+    Mod+Q { close-window; }
+
+    // Application Launchers
+    Mod+Return  { spawn "ghostty"; }
+    Mod+F       { spawn "nautilus"; }
+    Mod+B       { spawn "firefox"; }
+    Mod+Shift+B { spawn "firefox" "--private-window"; }
+    Mod+E       { spawn "thunderbird"; }
+    Mod+C       { spawn "rencal"; }
+
+    // Terminal Utilities
+    Mod+N { spawn "ghostty" "-e" "nvim"; }
+    Mod+T { spawn "ghostty" "-e" "btop"; }
+    Mod+D { spawn "ghostty" "-e" "lazydocker"; }
+    Mod+Y { spawn "ghostty" "-e" "elio"; }
+    Mod+P { spawn "ghostty" "-e" "bookokrat"; }
+
+    // Window / Column Navigation (Arrows & Vim keys)
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-workspace-up; }
+    Mod+Down  { focus-workspace-down; }
+
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+K { focus-workspace-up; }
+    Mod+J { focus-workspace-down; }
+
+    // Window / Column Movement
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+K { move-column-to-workspace-up; }
+    Mod+Shift+J { move-column-to-workspace-down; }
+
+    // Window / Column Resizing
+    Mod+Alt+H { set-column-width "-5%"; }
+    Mod+Alt+L { set-column-width "+5%"; }
+    Mod+Alt+K { set-window-height "-5%"; }
+    Mod+Alt+J { set-window-height "+5%"; }
+
+    // Layout states & Workspace switches
+    Mod+Shift+V { toggle-window-floating; }
+    Mod+R       { switch-preset-column-width; }
+    Mod+M       { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
+    Mod+W       { toggle-column-tabbed-display; }
+
+    // Workspace Direct Navigation
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+
+    // Move to Workspace
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+
+    // Focus monitor
+    Mod+Comma { focus-monitor-left; }
+    Mod+Period { focus-monitor-right; }
+
+    // Move monitor
+    Mod+Shift+Comma { move-column-to-monitor-left; }
+    Mod+Shift+Period { move-column-to-monitor-right; }
+
+    // Mouse & Trackpad navigation
+    Mod+Tab { focus-workspace-down; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
 
-    // -----------------------------
-    // Applications
-    // -----------------------------
-
-    Mod+Q {
-        close-window;
-    }
-
-
-    Mod+Return {
-        spawn "ghostty";
-    }
-
-
-    Mod+F {
-        spawn "nautilus";
-    }
-
-
-    Mod+B {
-        spawn "firefox";
-    }
-
-
-    Mod+Shift+B {
-        spawn "firefox" "--private-window";
-    }
-
-
-    Mod+N {
-        spawn "ghostty" "-e" "nvim";
-    }
-
-
-    Mod+T {
-        spawn "ghostty" "-e" "btop";
-    }
-
-
-    Mod+D {
-        spawn "ghostty" "-e" "lazydocker";
-    }
-
-
-    Mod+Y {
-        spawn "ghostty" "-e" "yazi";
-    }
-
-
-    Mod+E {
-        spawn "thunderbird";
-    }
-
-
-    Mod+Space {
-        spawn "wofi";
-    }
-
-
-    Mod+Escape {
-        spawn "hyprlock";
-    }
-
-
-    // Clipboard manager
-
-    Mod+V {
-        spawn-sh "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
-    }
-
-
-
-    // -----------------------------
-    // Window navigation
-    // -----------------------------
-
-    Mod+Left {
-        focus-column-left;
-    }
-
-    Mod+Right {
-        focus-column-right;
-    }
-
-    Mod+Up {
-        focus-workspace-up;
-    }
-
-    Mod+Down {
-        focus-workspace-down;
-    }
-
-
-    // Vim style navigation
-
-    Mod+H {
-        focus-column-left;
-    }
-
-    Mod+L {
-        focus-column-right;
-    }
-
-    Mod+K {
-        focus-workspace-up;
-    }
-
-    Mod+J {
-        focus-workspace-down;
-    }
-
-
-
-    // -----------------------------
-    // Move windows
-    // -----------------------------
-
-    Mod+Shift+H {
-        move-column-left;
-    }
-
-    Mod+Shift+L {
-        move-column-right;
-    }
-
-    Mod+Shift+K {
-        move-column-to-workspace-up;
-    }
-
-    Mod+Shift+J {
-        move-column-to-workspace-down;
-    }
-
-
-
-    // -----------------------------
-    // Resize windows
-    // -----------------------------
-
-    Mod+Ctrl+H {
-        set-column-width "-5%";
-    }
-
-
-    Mod+Ctrl+L {
-        set-column-width "+5%";
-    }
-
-
-    Mod+Ctrl+K {
-        set-window-height "-5%";
-    }
-
-
-    Mod+Ctrl+J {
-        set-window-height "+5%";
-    }
-
-
-
-    // -----------------------------
-    // Floating
-    // -----------------------------
-
-    Mod+Shift+V {
-        toggle-window-floating;
-    }
-
-
-
-    // -----------------------------
-    // Workspaces
-    // -----------------------------
-
-    Mod+1 {
-        focus-workspace 1;
-    }
-
-    Mod+2 {
-        focus-workspace 2;
-    }
-
-    Mod+3 {
-        focus-workspace 3;
-    }
-
-    Mod+4 {
-        focus-workspace 4;
-    }
-
-    Mod+5 {
-        focus-workspace 5;
-    }
-
-
-    // Move windows to workspaces
-
-    Mod+Shift+1 {
-        move-column-to-workspace 1;
-    }
-
-    Mod+Shift+2 {
-        move-column-to-workspace 2;
-    }
-
-    Mod+Shift+3 {
-        move-column-to-workspace 3;
-    }
-
-    Mod+Shift+4 {
-        move-column-to-workspace 4;
-    }
-
-    Mod+Shift+5 {
-        move-column-to-workspace 5;
-    }
-
-
-    // Workspace switching
-
-    Mod+Tab {
-        focus-workspace-down;
-    }
-
-
-    Mod+WheelScrollDown cooldown-ms=150 {
-        focus-workspace-down;
-    }
-
-
-    Mod+WheelScrollUp cooldown-ms=150 {
-        focus-workspace-up;
-    }
-
-
-
-    // -----------------------------
-    // Column management
-    // -----------------------------
-
-    Mod+R {
-        switch-preset-column-width;
-    }
-
-
-    Mod+M {
-        maximize-column;
-    }
-
-
-    Mod+Shift+M {
-        fullscreen-window;
-    }
-
-
-    Mod+W {
-        toggle-column-tabbed-display;
-    }
-
-
-
-    // -----------------------------
     // Screenshots
-    // -----------------------------
+    Print       { screenshot; }
+    Ctrl+Print  { screenshot-screen; }
+    Mod+Print   { screenshot-window; }
 
-    Print {
-        screenshot;
-    }
+    // Audio & Volume controls
+    XF86AudioRaiseVolume     { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume     { spawn-sh "noctalia msg volume-down"; }
+    Mod+XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up 1"; }
+    Mod+XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down 1"; }
+    XF86AudioMute            { spawn-sh "noctalia msg volume-mute"; }
 
+    // Backlight / Monitor Brightness
+    XF86MonBrightnessUp        { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown      { spawn-sh "noctalia msg brightness-down"; }
+    Mod+XF86MonBrightnessUp    { spawn-sh "noctalia msg brightness-up 1"; }
+    Mod+XF86MonBrightnessDown  { spawn-sh "noctalia msg brightness-down 1"; }
 
-    Ctrl+Print {
-        screenshot-screen;
-    }
+    // Media Player control
+    XF86AudioNext  { spawn "playerctl" "next"; }
+    XF86AudioPrev  { spawn "playerctl" "previous"; }
+    XF86AudioPlay  { spawn "playerctl" "play-pause"; }
+    XF86AudioPause { spawn "playerctl" "play-pause"; }
 
-
-    Alt+Print {
-        screenshot-window;
-    }
-
-
-
-    // -----------------------------
-    // Audio
-    // -----------------------------
-
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn-sh "swayosd-client --output-volume +5";
-    }
-
-
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn-sh "swayosd-client --output-volume -5";
-    }
-
-
-    XF86AudioMute allow-when-locked=true {
-        spawn-sh "swayosd-client --output-volume mute-toggle";
-    }
-
-
-    XF86AudioMicMute allow-when-locked=true {
-        spawn-sh "swayosd-client --input-volume mute-toggle";
-    }
-
-
-
-    // Small volume changes with Super
-
-    Mod+XF86AudioRaiseVolume {
-        spawn-sh "swayosd-client --output-volume +1";
-    }
-
-
-    Mod+XF86AudioLowerVolume {
-        spawn-sh "swayosd-client --output-volume -1";
-    }
-
-
-
-    // -----------------------------
-    // Brightness
-    // -----------------------------
-
-    XF86MonBrightnessUp {
-        spawn-sh "swayosd-client --brightness +5";
-    }
-
-
-    XF86MonBrightnessDown {
-        spawn-sh "swayosd-client --brightness -5";
-    }
-
-
-    Mod+XF86MonBrightnessUp {
-        spawn "brightnessctl" "set" "1%+";
-    }
-
-
-    Mod+XF86MonBrightnessDown {
-        spawn "brightnessctl" "set" "1%-";
-    }
-
-
-
-    // -----------------------------
-    // Media
-    // -----------------------------
-
-    XF86AudioNext {
-        spawn "playerctl" "next";
-    }
-
-
-    XF86AudioPrev {
-        spawn "playerctl" "previous";
-    }
-
-
-    XF86AudioPlay {
-        spawn "playerctl" "play-pause";
-    }
-
-
-    XF86AudioPause {
-        spawn "playerctl" "play-pause";
-    }
-
-
-
-    // -----------------------------
-    // Niri control
-    // -----------------------------
-
-    Mod+Shift+E {
-        quit;
-    }
-
-
-    Mod+Shift+P {
-        power-off-monitors;
-    }
+    // Core Noctalia desktop environment triggers
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+A     { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+S     { spawn-sh "noctalia msg settings-toggle"; }
+    Mod+V     { spawn-sh "noctalia msg panel-toggle clipboard"; }
+    Mod+Escape { spawn-sh "noctalia msg session lock"; }
 }
+
+// INCLUDES
+include "noctalia.kdl"
