@@ -1,0 +1,15 @@
+local mainMod = require("./keybinds/common").mainMod
+
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up"), { locked = true, repeating = true, })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"), { locked = true, repeating = true, })
+hl.bind(mainMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up 1"), { locked = true, repeating = true, })
+hl.bind(mainMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down 1"), { locked = true, repeating = true, })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia msg volume-mute"), { locked = true, })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { locked = true, repeating = true, })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { locked = true, repeating = true, })
+hl.bind(mainMod .. " + XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up 1"), { locked = true, repeating = true, })
+hl.bind(mainMod .. " + XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down 1"), { locked = true, repeating = true, })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true, })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true, })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true, })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true, })
