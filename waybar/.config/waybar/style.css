@@ -1,116 +1,126 @@
 * {
-  color: #cccccc;
-  border-radius: 10px;
-  min-height: 0px;
-  font-family: CaskaydiaMono Nerd Font;
-  font-size: 15.5px;
+    color: #cccccc;
+    font-family: "CaskaydiaMono Nerd Font";
+    font-size: 15.5px;
+    border-radius: 10px;
+    min-height: 0;
 }
 
+/* ==========================================================
+   BAR
+   ========================================================== */
+
 #waybar {
-  background-color: rgba(17, 17, 17, 0.95);
-  background-color: transparent;
+    background: transparent;
 }
 
 #waybar > box {
-  border-radius: 10px;
-  background-color: rgba(17, 17, 17 , 0.95);
-  margin: 7px 7px 4px 7px;
-  box-shadow: 0 0 2px 2px rgba(17, 17, 17, 0.8);
+    background: rgba(17, 17, 17, 0.95);
+    margin: 7px 7px 4px;
+    box-shadow: 0 0 2px 2px rgba(17, 17, 17, .8);
 }
 
+/* ==========================================================
+   MODULE GROUPS
+   ========================================================== */
+
 .modules-left {
-  margin-left: 8px;
+    margin-left: 8px;
 }
 
 .modules-right {
-  margin-right: 8px;
+    margin-right: 8px;
 }
 
-#workspaces button {
-  all: initial;
-  padding: 0 4px;
-  margin: 0 1px;
-  min-width: 15.5px;
-}
-
-#workspaces button.empty {
-  opacity: 0.4;
-}
+/* ==========================================================
+   DEFAULT MODULE STYLE
+   ========================================================== */
 
 #tray,
 #cpu,
-#disk,
 #memory,
+#disk,
 #battery,
 #network,
 #bluetooth,
 #pulseaudio,
+#clock,
 #custom-menu,
+#custom-update,
+#custom-expand-icon,
 #custom-screenrecording-indicator,
-#custom-update{
-  min-width: 15.5px;
-  margin: 0 1px;
-  padding: 0 8px;
+#custom-voxtype,
+#idle_inhibitor,
+#power-profiles-daemon {
+
+    padding: 0 8px;
+    margin: 0 1px;
+    min-width: 16px;
 }
 
-#custom-menu{
-  margin-right: 8px;
-}
-
-#bluetooth {
-  margin-right: -6px;
-  margin-left: -2px;
-}
-#memory {
-  margin-left: 2px;
-}
 #disk {
   margin-top: 2px;
 }
-#custom-expand-icon {
-  margin-right: 2px;
+
+/* ==========================================================
+   WORKSPACES
+   ========================================================== */
+
+#workspaces button {
+    all: initial;
+    min-width: 16px;
+    padding: 0 4px;
+    margin: 0 1px;
 }
 
-tooltip {
-  background-color: rgba(17, 17, 17, 0.95);
-  border: 2px solid rgba(34, 34, 34, 1);
-  box-shadow: 0 0 2px 2px rgba(17, 17, 17, 0.8);
+#workspaces button.empty {
+    opacity: .4;
 }
 
-tooltip label {
-  background-color: rgba(17, 17, 17, 0.95);
-  padding: 2px;
+/* ==========================================================
+   TRAY
+   ========================================================== */
+
+#tray {
+    padding: 0 8px;
 }
 
-#custom-update {
-  font-size: 15.5px;
+#tray > * {
+    padding: 0 8px;
+    margin: 0;
+}
+
+.tray-group-item {
+    padding: 0;
+}
+
+/* ==========================================================
+   SMALL EXCEPTIONS
+   ========================================================== */
+
+#custom-menu {
+    margin-right: 8px;
 }
 
 #clock {
-  margin-left: 8.75px;
-}
-
-.hidden {
-  opacity: 0;
+    margin-left: 8px;
 }
 
 #custom-screenrecording-indicator {
-  min-width: 15.5px;
-  margin-left: 8.75px;
-  font-size: 15.5px;
-}
-
-#custom-screenrecording-indicator.active {
-  color: #a55555;
+    margin-left: 8px;
 }
 
 #custom-voxtype {
-  min-width: 12px;
-  margin: 0 0 0 7.5px;
+    margin-left: 8px;
 }
 
+/* ==========================================================
+   STATUS COLORS
+   ========================================================== */
+
+#custom-screenrecording-indicator.active,
 #custom-voxtype.recording {
-  color: #a55555;
+    color: #a55555;
 }
 
 #battery.warning {
@@ -121,3 +131,25 @@ tooltip label {
     color: #d60000;
 }
 
+/* ==========================================================
+   TOOLTIPS
+   ========================================================== */
+
+tooltip {
+    background: rgba(17, 17, 17, .95);
+    border: 2px solid #222222;
+    box-shadow: 0 0 2px 2px rgba(17,17,17,.8);
+}
+
+tooltip label {
+    padding: 2px;
+    background: transparent;
+}
+
+/* ==========================================================
+   HIDDEN
+   ========================================================== */
+
+.hidden {
+    opacity: 0;
+}

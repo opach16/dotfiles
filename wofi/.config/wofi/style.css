@@ -1,41 +1,84 @@
 #window {
-    background-color: #111111;
-    color: #CCCCCC;
+    background-color: #121212;
+    color: #BEBEBE;
+
     border-radius: 10px;
-    border: 2px solid rgba(102, 102, 102, 0.5);
+    border: 2px solid rgba(138, 138, 141, 0.5);
+
     font-family: "CaskaydiaMono Nerd Font";
     font-size: 16px;
 }
+
+
+/* ============================================================================
+ * INPUT
+ * ========================================================================== */
+
 #input {
-    background-color: #222222;
-    border: none;
-    border: 2px solid rgba(102, 102, 102, 0.5);
+    background-color: #333333;
+
+    border: 2px solid rgba(138, 138, 141, 0.5);
+
     padding: 0.8rem 1rem;
+
     border-radius: 10px 10px 0 0;
+
+    color: #BEBEBE;
 }
-#input:focus, #input:focus-visible, #input:active {
-    background-color: #222222;
+
+#input:focus,
+#input:focus-visible,
+#input:active {
+    background-color: #333333;
 }
+
+
+/* ============================================================================
+ * BOXES
+ * ========================================================================== */
+
 #inner-box {
     border-radius: 10px;
 }
+
 #outer-box {
     border-radius: 10px;
 }
+
+
+/* ============================================================================
+ * SCROLL
+ * ========================================================================== */
+
 #scroll {
     margin-top: 3px;
     margin-bottom: 20px;
     margin-right: 5px;
     margin-left: 5px;
 }
+
+
+/* ============================================================================
+ * ENTRIES
+ * ========================================================================== */
+
 #entry {
-    background-color: #111111;
+    background-color: #121212;
+    color: #BEBEBE;
+
     padding: 0.6rem 1rem;
 }
+
 #entry:selected {
-    background-color: #222222;
+    background-color: #515151;
     border-radius: 10px;
 }
+
+
+/* ============================================================================
+ * SELECTED TEXT
+ * ========================================================================== */
+
 #text:selected {
-    color: #FFA000;
+    color: #E68E0D;
 }

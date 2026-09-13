@@ -11,7 +11,7 @@ play = [
 ]
 
 pdf = [
-  { run = 'zathura %s', desc = "Open PDF with Zathura", block = true, for = "unix" },
+  { run = 'zathura %s', desc = "Open PDF with Zathura", orphan = true, for = "unix" },
 ]
 
 open = [
