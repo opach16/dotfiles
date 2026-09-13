@@ -1,0 +1,76 @@
+# Colors accept #rrggbb, ansi-blue, indexed-12, none, or transparent.
+
+[palette]
+
+# App surfaces
+
+bg = "#111111"               # mSurface / terminal background
+chrome = "#111111"           # mSurface
+chrome_alt = "#181818"       # mSurfaceVariant
+
+panel = "#111111"            # mSurfaceVariant
+panel_alt = "#111111"        # slightly darker surface
+surface = "#111111"          # cards, inputs, overlays
+elevated = "#181818"         # raised overlay surfaces
+
+border = "#666666"         # mOutline
+path_bg = "#181818"          # mSurfaceVariant
+
+# Text
+
+text = "#CCCCCC"             # mOnSurface
+muted = "#828282"            # mOnSurfaceVariant
+chip_text = "#cccccc"        # mOnPrimary / text on bright chips
+
+# Controls and states
+
+accent = "#E6A23C"           # mPrimary
+accent_soft = "#3A2B16"      # subtle primary background
+accent_text = "#cccccc"     # mOnPrimary
+selected_bg = "#3A2B16"     # subtle primary selection
+selected_border = "#E6A23C" # primary outline for selected pane
+
+# Status markers
+
+selection_bar = "#E6A23C"   # mPrimary
+yank_bar = "#AAD94C"         # terminal green
+cut_bar = "#D95757"          # mError
+progress_bar = "#59C2FF"     # terminal blue
+
+[preview.code]
+bg = "none"                  # preview background; none = transparent
+fg = "#CCCCCC"               # normal code text
+line_number = "#828282"      # gutter line numbers
+line_highlight = "#181818"   # active/current line
+
+comment = "#828282"          # comments
+string = "#95E6CB"           # terminal cyan
+keyword = "#E6A23C"          # primary accent
+function = "#59C2FF"         # terminal blue
+invalid = "#D95757"          # error
+
+[classes.directory]
+icon = "󰉋"                   # folder icon
+color = "#E6A23C"            # primary accent
+
+[classes.code]
+icon = "󰆍"                   # default code-file icon
+color = "#59C2FF"            # terminal blue
+
+[classes.config]
+icon = "󰒓"                   # default config-file icon
+color = "#D2A6FF"            # terminal magenta
+
+[extensions.rs]
+class = "code"               # reuse the code class
+icon = ""                   # Rust icon
+color = "#FFB454"            # terminal yellow
+
+[files."Cargo.toml"]
+class = "config"             # exact filename override
+icon = ""
+
+[directories."node_modules"]
+icon = "󰏗"                   # exact directory-name override
+color = "#828282"            # muted
+
