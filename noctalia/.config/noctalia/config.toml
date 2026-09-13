@@ -1,0 +1,340 @@
+[audio]
+sound_volume = 1.0
+
+[backdrop]
+tint_intensity = 0.3
+
+[bar.default]
+background_opacity = 0.95
+border = "shadow"
+end = [ "tray", "sysmon", "notifications", "caffeine", "clipboard", "network", "bluetooth", "volume", "battery", "session" ]
+margin_edge = 8
+margin_ends = 8
+padding = 20
+radius = 10
+scale = 1.1
+start = [ "control-center", "spacer_2", "workspaces" ]
+thickness = 32
+widget_spacing = 16
+
+[battery]
+warning_threshold = 20
+
+[calendar]
+enabled = true
+
+    [calendar.account.nextcloud]
+    name = "Nextcloud"
+    provider = "custom"
+    server_url = "https://terravault.pl/remote.php/dav"
+    type = "caldav"
+    username = "konrad"
+
+[control_center]
+hidden_tabs = [ "media" ]
+sidebar = "full"
+sidebar_section = "none"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[dock]
+background_opacity = 0.95
+concave_edge_corners = false
+cross_axis_padding = 4
+item_spacing = 3
+main_axis_padding = 8
+radius = 10
+radius_bottom_left = 0
+radius_bottom_right = 0
+show_dots = true
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+pre_action_fade_seconds = 5
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 330.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 300.0
+
+[location]
+address = "Kraków, Poland"
+
+[lockscreen]
+allow_empty_password = false
+blur_intensity = 0.5
+blurred_desktop = false
+enabled = true
+fingerprint = true
+monitors = [ "eDP-1" ]
+tint_intensity = 0.3
+wallpaper = ""
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000001" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 32
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
+    box_height = 196.0
+    box_width = 724.0
+    cx = 378.0
+    cy = 722.0
+    output = "WL-1"
+    placement_height = 904.0
+    placement_width = 756.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 320.0
+    cx = 800.0
+    cy = 740.0
+    output = "eDP-1"
+    placement_height = 1000.0
+    placement_width = 1600.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "shadow"
+        background_opacity = 0.0
+        background_radius = 10.0
+        center_password_text = true
+        input_opacity = 1.0
+        input_radius = 10.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = false
+        show_login_button = false
+        show_media = false
+        show_session_buttons = true
+        show_unlock_hint = false
+        show_weather = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 160.0
+    box_width = 384.0
+    cx = 800.0
+    cy = 185.0
+    output = "eDP-1"
+    placement_height = 1000.0
+    placement_width = 1600.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        background_opacity = 0.8
+        background_padding = 8
+        background_radius = 10
+        center_text = true
+        clock_style = "digital"
+        color = "on_surface"
+        font_family = "Adwaita Sans"
+        format = "{:%H:%M}"
+        shadow = false
+
+[nightlight]
+enabled = true
+
+[osd]
+offset_y = 70
+position = "bottom_center"
+position_vertical = "bottom_center"
+scale = 1.1
+
+    [osd.kinds]
+    media = false
+
+[plugins]
+enabled = []
+
+[shell]
+font_family = "CaskaydiaMono Nerd Font Mono"
+settings_show_advanced = true
+
+    [shell.animation]
+    speed = 1.5
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    categories = false
+    compact = true
+
+        [shell.launcher.providers.calculator]
+        prefix = ""
+
+    [shell.panel]
+    clipboard_placement = "floating"
+    clipboard_position = "auto"
+    control_center_placement = "floating"
+    open_near_click_clipboard = true
+    open_near_click_control_center = true
+    open_near_click_session = true
+    session_placement = "floating"
+    session_position = "auto"
+    wallpaper_placement = "floating"
+    wallpaper_position = "center"
+
+    [shell.screen_corners]
+    enabled = true
+    size = 10
+
+    [shell.screenshot]
+    confirm_region = true
+    directory = "/home/konrad/Pictures/Screenshots"
+
+    [shell.session]
+    grid_columns = 4
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = false
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.99
+    direction = "center"
+
+[theme]
+builtin = "Ayu"
+community_palette = "Murata"
+custom_palette = "matte-black"
+mode = "dark"
+source = "custom"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "mango", "niri" ]
+
+[wallpaper]
+directory = "/home/konrad/Pictures/backgrounds"
+
+    [wallpaper.default]
+    path = "/home/konrad/Pictures/backgrounds/background.png"
+
+    [wallpaper.last]
+    path = "/home/konrad/Pictures/backgrounds/background.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/konrad/Pictures/backgrounds/background.png"
+
+[widget.audio_visualizer]
+color_2 = "secondary"
+width = 100
+
+[widget.clock]
+format = "{:%A %H:%M}"
+
+[widget.control-center]
+custom_image = "/home/konrad/.config/noctalia/icons/redhat.svg"
+glyph = "brand-redhat"
+scale = 1.1
+
+[widget.network]
+scale = 1.15
+show_label = false
+
+[widget.spacer_2]
+length = 16
+type = "spacer"
+
+[widget.spacer_3]
+length = 24
+type = "spacer"
+
+[widget.sysmon]
+glyph = "cpu"
+show_value = false
+visualization = "none"
+
+[widget.tray]
+detached_panel = true
+drawer = true
+drawer_columns = 5
+
+[widget.volume]
+show_label = false
+
+[widget.workspaces]
+active_pill_size = 2.0
+empty_color = "on_surface_variant"
+focused_color = "tertiary"
+focused_output_only = true
+occupied_color = "on_surface_variant"
+scale = 1.1
+style = "minimal"
