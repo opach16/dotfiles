@@ -1,0 +1,49 @@
+# Ogólne ustawienia
+daemonize
+ignore-empty-password
+show-failed-attempts
+
+# Tło systemu (kolorystyka #111111)
+color=111111
+
+# Czcionka i wskaźnik
+font=CaskaydiaMono Nerd Font
+font-size=16
+indicator-radius=80
+indicator-thickness=7
+indicator-idle-visible
+
+# --- STYLIZACJA WSKAŹNIKA ---
+
+# Stan bezczynności / Wpisywanie (Główny motyw #FFA000 i #111111)
+inside-color=111111
+ring-color=FFA000
+text-color=FFA000
+key-hl-color=FFFFFF
+bs-hl-color=FF5555
+separator-color=111111
+
+# Ukrycie linii oddzielających sekcje wskaźnika
+line-uses-inside
+
+# Stan weryfikacji hasła (Jasny pomarańcz/bursztyn z animacją)
+inside-ver-color=111111
+ring-ver-color=FFA000
+text-ver-color=FFA000
+
+# Stan błędu (Czerwień zmiksowana z Twoim tłem dla kontrastu)
+inside-wrong-color=111111
+ring-wrong-color=FF3333
+text-wrong-color=FF3333
+
+# Stan czyszczenia wpisanego hasła (Backspace / Clear)
+inside-clear-color=111111
+ring-clear-color=FFCC00
+text-clear-color=FFCC00
+
+# Stan aktywnego Caps Locka
+inside-caps-lock-color=111111
+ring-caps-lock-color=FFA000
+text-caps-lock-color=FFA000
+caps-lock-key-hl-color=FFFFFF
+caps-lock-bs-hl-color=FF5555
