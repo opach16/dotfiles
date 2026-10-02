@@ -1,5 +1,14 @@
 [mgr]
-ratio = [1, 2, 3]
+ratio = [2, 5, 5]
+linemode = "mtime"
+scrolloff = 10
+
+[preview]
+max_width = 2048
+max_height = 2048
+image_delay = 0
+tab_size = 2
+image_quality = 70
 
 [opener]
 edit = [
@@ -14,6 +23,10 @@ pdf = [
   { run = 'zathura %s', desc = "Open PDF with Zathura", orphan = true, for = "unix" },
 ]
 
+image = [
+  { run = 'imv-dir %s', desc = "Open with imv-dir", orphan = true, for = "unix" },
+]
+
 open = [
   { run = 'xdg-open %s', desc = "Open with system default", for = "linux" },
 ]
@@ -24,10 +37,12 @@ rules = [
   { mime = "application/pdf", use = "pdf" },
   { mime = "audio/*", use = "play" },
   { mime = "video/*", use = "play" },
+  { mime = "image/*", use = "image" },
   { url = "*", use = "open" },
 ]
 
-[preview]
-max_width = 4096
-max_height = 4096
-image_delay = 0
+prepend_rules = [
+	{ url = "*.json", use = "edit" },
+
+	{ url = "*.html", use = [ "open", "edit" ] },
+]

@@ -1,0 +1,38 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+[app]
+overall = { bg = "#121212" }
+
+[mgr]
+cwd = { fg = "#BEBEBE" }
+hovered = { fg = "#E68E0D", bg = "#333333" }
+border_style = { fg = "#555555" }
+
+[indicator]
+parent = { fg = "#E68E0D" }
+current = { fg = "#121212", bg = "#E68E0D" }
+preview = { fg = "#BEBEBE" }
+
+[tabs]
+active = { fg = "#121212", bg = "#E68E0D" }
+inactive = { fg = "#8A8A8D", bg = "#121212" }
+
+[mode]
+normal_main = { fg = "#121212", bg = "#E68E0D" }
+normal_alt = { fg = "#E68E0D", bg = "#333333" }
+
+[status]
+overall = { fg = "#BEBEBE", bg = "#121212" }
+
+[filetype]
+rules = [
+    { url = "*/", fg = "#BEBEBE" },
+    { url = "*", fg = "#BEBEBE" },
+    { url = "*", is = "exec", fg = "#F59E0B" },
+    { url = "*", is = "orphan", fg = "#D35F5F" }
+]
+
+[icon]
+prepend_conds = [
+    { if = "dir", text = "󰉋", fg = "#E68E0D" },
+]
