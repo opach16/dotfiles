@@ -1,0 +1,29 @@
+[options]
+suppress_default_binds = true
+loop_input = true
+scaling_mode = full
+background = 121212 
+
+[binds]
+q = quit
+<Escape> = quit
+l = next
+<Right> = next
+h = prev
+<Left> = prev
+j = next
+k = prev
+<space> = next
+b = prev
+gg = goto 1
+<Shift+G> = goto -1
+<Shift+plus> = zoom 1
+<minus> = zoom -1
+<equal> = reset
+r = rotate by 90
+<Shift+R> = rotate by -90
+f = fullscreen
+s = slideshow +3
+x = close
+p = exec echo "$imv_current_file"
+i = overlay
