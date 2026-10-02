@@ -1,0 +1,29 @@
+# Input methods
+export QT_IM_MODULES="wayland;fcitx"
+export XMODIFIERS="@im=fcitx"
+
+# Cursor
+export XCURSOR_SIZE="24"
+
+# GTK
+export GTK_THEME="Adwaita:dark"
+export GTK_USE_PORTAL="1"
+export GDK_BACKEND="wayland,x11"
+
+# Qt
+export QT_QPA_PLATFORM="wayland"
+export QT_QPA_PLATFORMTHEME="gnome"
+
+# Wyłącz podczas diagnozowania problemów z menu Nautilus:
+export QT_STYLE_OVERRIDE="kvantum"
+
+# SDL
+export SDL_VIDEODRIVER="wayland"
+
+# Firefox / Electron
+export MOZ_ENABLE_WAYLAND="1"
+export ELECTRON_OZONE_PLATFORM_HINT="wayland"
+export OZONE_PLATFORM="wayland"
+
+# XCompose
+export XCOMPOSEFILE="$HOME/.XCompose"
