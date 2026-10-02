@@ -3,12 +3,14 @@
 
   "layer": "top",
   "position": "top",
-  "spacing": 0,
-  "height": 40,
+  "spacing": 10,
+  "height": 42,
+  "output": "eDP-1",
+  "margin-top": 2,
 
   "modules-left": [
     "custom/menu",
-    "niri/workspaces"
+    "hyprland/workspaces"
   ],
 
   "modules-center": [
@@ -25,27 +27,6 @@
     "pulseaudio",
     "battery"
   ],
-
-
-  "niri/workspaces": {
-    "format": "{icon}",
-
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "0",
-
-      "active": "⬤",
-      "default": "⬤"
-    },
-  },
 
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -107,7 +88,8 @@
   "clock": {
     "format": "{:L%A %H:%M}",
     "format-alt": "{:L%d %B %Y}",
-    "tooltip": false,
+    		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip": true,
     "on-click-right": "rencal  > /dev/null 2>&1"
   },
 

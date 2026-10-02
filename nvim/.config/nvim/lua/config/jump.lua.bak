@@ -3,6 +3,9 @@ local BASE_LABELS = vim.fn.split("fdsaghjklrewqtyuiopvcxzbnmFDSAGHJKLREWQTYUIOPV
 
 local function jump(mode_key)
     return function()
+        local mode = vim.api.nvim_get_mode().mode
+        local is_operator = mode:sub(1, 1) == "o"
+
         local win = vim.api.nvim_get_current_win()
         local buf = vim.api.nvim_win_get_buf(win)
         local cur_pos = vim.api.nvim_win_get_cursor(win)
@@ -21,24 +24,34 @@ local function jump(mode_key)
         local raw_matches = {}
         local is_backward = (mode_key == "F" or mode_key == "T")
 
-        -- 1. Wyszukiwanie dopasowań
+        -- 1. Wyszukiwanie wystąpień i obliczanie pozycji
         for idx, line in ipairs(lines) do
             local lnum = top + idx - 1
             local col = 1
             local haystack = line:lower()
+            local line_len = #line
 
             while true do
                 local s, e = haystack:find(pat, col, true)
                 if not s then break end
                 local match_col = s - 1
 
-                local is_current = (lnum == cur_row) and (match_col == cur_col)
+                -- Pozycja lądowania kursora wg standardu Vima
+                local jump_col = match_col
+                if mode_key == "t" then
+                    jump_col = math.max(0, match_col - 1)
+                elseif mode_key == "T" then
+                    jump_col = math.min(math.max(0, line_len - 1), match_col + 1)
+                end
+
+                local is_current = (lnum == cur_row) and (jump_col == cur_col or match_col == cur_col)
 
                 if not is_current then
                     table.insert(raw_matches, {
                         lnum = lnum,
                         row = lnum - 1,
                         col = match_col,
+                        jump_col = jump_col,
                         len = e - s + 1,
                     })
                 end
@@ -50,7 +63,7 @@ local function jump(mode_key)
             return
         end
 
-        -- 2. Sortowanie według bliskości od kursora (z uwzględnieniem kierunku)
+        -- 2. Sortowanie wyników
         table.sort(raw_matches, function(a, b)
             local a_fwd = (a.lnum > cur_row) or (a.lnum == cur_row and a.col > cur_col)
             local b_fwd = (b.lnum > cur_row) or (b.lnum == cur_row and b.col > cur_col)
@@ -78,7 +91,7 @@ local function jump(mode_key)
             end
         end)
 
-        -- 3. Przygotowanie etykiet (najbliższy = wpisany znak 'ch', reszta z puli)
+        -- 3. Przygotowanie etykiet
         local labels = {}
         for _, l in ipairs(BASE_LABELS) do
             if l ~= ch then
@@ -88,12 +101,12 @@ local function jump(mode_key)
 
         local targets = {}
 
-        -- 4. Nałożenie etykiet na ekranie
+        -- 4. Nałożenie etykiet
         for i, m in ipairs(raw_matches) do
             local label = (i == 1) and ch or labels[i - 1]
 
             if label then
-                targets[label] = { m.lnum, m.col }
+                targets[label] = { m.lnum, m.jump_col, m.col }
 
                 vim.api.nvim_buf_set_extmark(buf, NS, m.row, m.col, {
                     end_col = m.col + m.len,
@@ -114,38 +127,27 @@ local function jump(mode_key)
         vim.api.nvim_buf_clear_namespace(buf, NS, 0, -1)
         vim.cmd.redraw()
 
-        -- 5. Wykonanie ruchu zgodnie z natywną semantyką Vima
         local target = targets[input]
         if target then
-            local target_line, target_col = target[1], target[2]
+            local dest_line, dest_col, match_col = target[1], target[2], target[3]
 
-            -- W trybie Normalnym (nie-operator) dodajemy jump-list mark `'`
-            local mode = vim.api.nvim_get_mode().mode
-            if mode:sub(1, 1) ~= "o" and mode:sub(1, 1) ~= "nov" then
+            if is_operator then
+                -- Standard Vima w trybie operatora dla 'f' wymaga dołączenia samego znaku (inclusive selection)
+                if mode_key == "f" and dest_line == cur_row and match_col >= cur_col then
+                    vim.cmd("normal! v")
+                    vim.api.nvim_win_set_cursor(win, { dest_line, match_col })
+                else
+                    vim.cmd("normal! v")
+                    vim.api.nvim_win_set_cursor(win, { dest_line, dest_col })
+                end
+            else
                 vim.cmd("normal! m'")
-            end
-
-            -- Wyliczamy docelową kolumnę przesunięcia kursora/zaznaczenia
-            local dest_col = target_col
-            if mode_key == "t" then
-                dest_col = math.max(0, target_col - 1)
-            elseif mode_key == "T" then
-                dest_col = target_col + 1
-            end
-
-            -- Przestawiamy kursor dokładnie na docelowe miejsce
-            vim.api.nvim_win_set_cursor(win, { target_line, dest_col })
-
-            -- W trybie operatora (d, y, c itp.), natywne 'f' oraz 't' wymuszają zakres 'inclusive' (włącznie z ostatnim znakiem).
-            -- Wymuszamy regułę 'v' dla skoków w przód (f, t), aby operator objął znak docelowy.
-            if mode:sub(1, 1) == "o" and (mode_key == "f" or mode_key == "t") then
-                vim.cmd("normal! v")
+                vim.api.nvim_win_set_cursor(win, { dest_line, dest_col })
             end
         end
     end
 end
 
--- Rejestracja mapowań dla Normal, Visual/Select oraz Operator-pending mode
 for _, key in ipairs({ "f", "t", "F", "T" }) do
     vim.keymap.set({ "n", "x", "o" }, key, jump(key), { desc = "Jump " .. key })
 end

@@ -1,40 +1,28 @@
 * {
-    color: #cccccc;
+    color: #bababa;
     font-family: "CaskaydiaMono Nerd Font";
-    font-size: 15.5px;
+    font-size: 16px;
     border-radius: 10px;
     min-height: 0;
 }
-
-/* ==========================================================
-   BAR
-   ========================================================== */
 
 #waybar {
     background: transparent;
 }
 
 #waybar > box {
-    background: rgba(17, 17, 17, 0.95);
-    margin: 7px 7px 4px;
-    box-shadow: 0 0 2px 2px rgba(17, 17, 17, .8);
+    background: rgba(18, 18, 18, 0.95);
+    margin: 8px 8px 4px;
+    box-shadow: 0 0 2px 2px rgba(18, 18, 18, 0.8);
 }
 
-/* ==========================================================
-   MODULE GROUPS
-   ========================================================== */
-
 .modules-left {
-    margin-left: 8px;
+    margin-left: 16px;
 }
 
 .modules-right {
-    margin-right: 8px;
+    margin-right: 16px;
 }
-
-/* ==========================================================
-   DEFAULT MODULE STYLE
-   ========================================================== */
 
 #tray,
 #cpu,
@@ -53,7 +41,7 @@
 #idle_inhibitor,
 #power-profiles-daemon {
 
-    padding: 0 8px;
+    padding: 0 0px;
     margin: 0 1px;
     min-width: 16px;
 }
