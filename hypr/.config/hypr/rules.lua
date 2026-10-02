@@ -1,3 +1,30 @@
+-- PERSISTENT WORKSPACES
+hl.workspace_rule({
+  workspace = "1",
+  persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "2",
+  persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "3",
+  persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "4",
+  persistent = true,
+})
+
+hl.workspace_rule({
+  workspace = "5",
+  persistent = true,
+})
+
+-- APPS RULES
 hl.window_rule({
   name = "ghostty-workspace-2", 
   match = { class = "^com[.]mitchellh[.]ghostty$" }, 

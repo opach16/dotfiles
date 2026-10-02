@@ -65,14 +65,12 @@ hl.window_rule({
     suppress_event = "fullscreen",
 })
 
--- Thunderbird
 hl.window_rule({
   name = "thunderbird-workspace-4", 
   match = { class = "^net[.]thunderbird[.]Thunderbird$" }, 
   workspace = "4"
 })
 
--- Element
 hl.window_rule({
   name = "element-workspace-4", 
   match = { class = "^im[.]riot[.]Riot$" }, 
