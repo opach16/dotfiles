@@ -1,0 +1,52 @@
+{
+  "dictionaries": [
+    {
+      "id": "eng-pol",
+      "name": "eng-pol",
+      "from_lang": "ENG",
+      "to_lang": "POL",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/eng-pol/eng-pol",
+      "active": true
+    },
+    {
+      "id": "deu-pol",
+      "name": "deu-pol",
+      "from_lang": "DEU",
+      "to_lang": "POL",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/deu-pol/deu-pol",
+      "active": true
+    },
+    {
+      "id": "pol-deu",
+      "name": "pol-deu",
+      "from_lang": "POL",
+      "to_lang": "DEU",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/pol-deu/pol-deu",
+      "active": true
+    },
+    {
+      "id": "pol-eng",
+      "name": "pol-eng",
+      "from_lang": "POL",
+      "to_lang": "ENG",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/pol-eng/pol-eng",
+      "active": true
+    },
+    {
+      "id": "pol-spa",
+      "name": "pol-spa",
+      "from_lang": "POL",
+      "to_lang": "SPA",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/pol-spa/pol-spa",
+      "active": true
+    },
+    {
+      "id": "spa-pol",
+      "name": "spa-pol",
+      "from_lang": "SPA",
+      "to_lang": "POL",
+      "path": "/home/konrad/.local/share/tuidict/dictionaries/spa-pol/spa-pol",
+      "active": true
+    }
+  ]
+}
