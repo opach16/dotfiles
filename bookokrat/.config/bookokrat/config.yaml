@@ -1,0 +1,88 @@
+version: 3
+theme: "matte-black"
+margin: 1
+transparent_background: true
+pdf_scale: 0.9656085
+pdf_pan_shift: 0
+pdf_render_mode: scroll
+pdf_page_layout_mode: single
+epub_column_mode: single
+pdf_enabled: true
+pdf_settings_configured: true
+justify_text: false
+invert_scroll_direction: false
+book_sort_order: by_name
+
+# ============================================================================
+# Lookup Command
+# ============================================================================
+# Shell command to run when you press Space+l on selected text.
+# Use {} as a placeholder for the selected word. If no {} is present,
+# the selected text is appended as a shell-escaped argument.
+#
+# lookup_display controls how output is shown:
+#   popup          - capture stdout and show in a scrollable popup (default)
+#   fire_and_forget - spawn command and move on (e.g., open a browser)
+#
+# Example: CLI dictionary (output shown in popup)
+#   lookup_command: "dict {}"
+#   lookup_display: popup
+#
+# Example: macOS Dictionary.app
+#   lookup_command: "open dict://{}"
+#   lookup_display: fire_and_forget
+#
+# Example: online dictionary in browser
+#   lookup_command: "open 'https://www.merriam-webster.com/dictionary/{}'"
+#   lookup_display: fire_and_forget
+
+# ============================================================================
+# SyncTeX inverse search: editor command to run when you Ctrl+click,
+# secondary-click, or press 'gd' on a PDF rendered from LaTeX.
+# Placeholders: {file}, {line}, {column}
+#
+# Example: neovim via remote socket
+#   synctex_editor: "nvim --server /tmp/nvim.sock --remote-send '<C-\\><C-n>:e {file}<CR>:{line}<CR>'"
+#
+# Example: open in new terminal nvim
+#   synctex_editor: "nvim +{line} {file}"
+
+
+# ============================================================================
+# Custom Themes
+# ============================================================================
+# Add your own themes below. Find Base16 themes at:
+# https://github.com/tinted-theming/schemes
+#
+# To add a theme, uncomment and edit the lines below:
+#
+custom_themes:
+  - scheme: "matte-black"
+    author: "konrad"
+
+    # Backgrounds
+    base00: "#121212"    # Main background
+    base01: "#0F131A"    # Panel background
+    base02: "#1B3A5B"    # Selection background
+
+    # Foregrounds
+    base03: "#555555"    # Comments / muted text
+    base04: "#555555"    # Secondary foreground / UI
+    base05: "#bebebe"    # Default text
+    base06: "#555555"    # Light foreground / special
+    base07: "#bebebe"    # Brightest text
+
+    # ANSI / syntax colors
+    base08: "#d35f5f"    # Red / errors
+    base09: "#e68e0d"    # Orange / accent / constants
+    base0A: "#ffc107"    # Yellow / primary accent
+    base0B: "#AAD94C"    # Green / strings
+    base0C: "#95E6CB"    # Cyan / regex
+    base0D: "#999999"    # Blue / entities / links
+    base0E: "#D2A6FF"    # Purple / keywords / constants
+    base0F: "#F29668"    # Peach / operators
+
+nav_panel_width: 37
+lookup_command: 'dict -d fd-eng-pol {}  || dict -d fd-deu-pol {} || dict -d fd-spa-pol {}  || dict -d fd-deu-eng {} || dict -d fd-spa-eng'
+lookup_display: popup
+synctex_editor: null

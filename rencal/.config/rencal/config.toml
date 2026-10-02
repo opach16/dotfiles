@@ -1,0 +1,5 @@
+theme = "user:matte-black"
+notifications_enabled = true
+auto_sync_enabled = true
+
+[groups]
