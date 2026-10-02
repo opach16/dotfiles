@@ -1,19 +1,25 @@
 hl.window_rule({
-  name = "ghostty-workspace-1", 
+  name = "ghostty-workspace-2", 
   match = { class = "^com[.]mitchellh[.]ghostty$" }, 
-  workspace = "1" 
-})
-
-hl.window_rule({ 
-  name = "rencal-workspace-1", 
-  match = { class = "^rencal$" }, 
-  workspace = "1" 
-})
-
-hl.window_rule({ 
-  name = "firefox-workspace-2", 
-  match = { class = "^firefox$" }, 
   workspace = "2" 
+})
+
+hl.window_rule({
+  name = "nvim-workspace-3", 
+  match = { class = "^com[.]mitchellh[.]ghostty$", title = "^nvim$" }, 
+  workspace = "3" 
+})
+
+hl.window_rule({ 
+  name = "rencal-workspace-5", 
+  match = { class = "^rencal$" }, 
+  workspace = "5" 
+})
+
+hl.window_rule({ 
+  name = "firefox-workspace-1", 
+  match = { class = "^org[.]mozilla[.]firefox$" }, 
+  workspace = "1" 
 })
 
 hl.window_rule({
